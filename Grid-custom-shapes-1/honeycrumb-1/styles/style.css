@@ -1,0 +1,51 @@
+body {
+  display: grid;
+  place-content: center;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.gallery {
+  --s: 150px; /* control the size */
+  --g: 10px; /* control the gap */
+  display: grid;
+}
+
+.gallery > img {
+  grid-area: 1 / 1;
+
+  width: var(--s);
+  aspect-ratio: 1.15;
+  object-fit: cover;
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0 50%);
+
+  transform: translate(var(--_x, 0), var(--_y, 0)); /* 0 = Fallback value */
+}
+
+.gallery > img:nth-child(1) {
+  --_y: calc(-100% - var(--g));
+}
+
+.gallery > img:nth-child(7) {
+  --_y: calc(100% + var(--g));
+}
+
+.gallery > img:nth-child(3),
+.gallery > img:nth-child(5) {
+  --_x: calc(-75% - 0.87 * var(--g));
+}
+
+.gallery > img:nth-child(4),
+.gallery > img:nth-child(6) {
+  --_x: calc(75% + 0.87 * var(--g));
+}
+
+.gallery > img:nth-child(3),
+.gallery > img:nth-child(4) {
+  --_y: calc(-50% - 0.5 * var(--g));
+}
+
+.gallery > img:nth-child(5),
+.gallery > img:nth-child(6) {
+  --_y: calc(50% + 0.5 * var(--g));
+}
